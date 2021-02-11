@@ -1,0 +1,94 @@
+package MySelenium;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class locators_XPath {
+
+    @Test
+
+    public void test1() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
+        driver.manage().window().maximize();
+
+        //Relative xpath
+
+        WebElement input = driver.findElement(By.xpath("//input[@id='search_query_top']"));
+        input.sendKeys("T-shirts");
+
+        WebElement button = driver.findElement(By.xpath("//button[@name='submit_search']"));
+        button.click();
+    }
+
+    @Test
+
+    public void OrOperators() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
+        driver.manage().window().maximize();
+
+        // xpath with 'or' operator
+        WebElement input = driver.findElement(By.xpath("//input[@id='search_query_top' or @name='search_query']"));
+        input.sendKeys("T-shirts");
+
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-default button-search' or @name='submit_search']"));
+        button.click();
+
+    }
+
+    @Test
+
+    public void AndOperators() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
+        driver.manage().window().maximize();
+
+        // xpath with 'and' operator
+        WebElement input = driver.findElement(By.xpath("//input[@id='search_query_top' and  @name='search_query']"));
+        input.sendKeys("T-shirts");
+
+        WebElement button = driver.findElement(By.xpath("//button[@class='btn btn-default button-search' and @name='submit_search']"));
+        button.click();
+
+
+    }
+
+    @Test
+
+    public void contains() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
+        driver.manage().window().maximize();
+
+        // Contains
+
+        WebElement input = driver.findElement(By.xpath("//input[contains@id,'query_top')]"));
+        input.sendKeys("T-shirts");
+
+    }
+
+
+    @Test
+
+    public void chaining() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
+        driver.manage().window().maximize();
+
+        // chaining
+
+        WebElement input = driver.findElement(By.xpath("//form[@id='searchbox']//input[@id='search_query_top']"));
+        input.sendKeys("T-shirts");
+
+    }
+}
